@@ -33,7 +33,7 @@ class ProductResource extends Resource
                 }),
                 Forms\Components\TextInput::make('slug')->required(),
                 Forms\Components\TextInput::make('price')->required()->rule("numeric"),
-                Forms\Components\FileUpload::make("image")->required()->directory('images'),
+                Forms\Components\FileUpload::make("image")->directory('images'),
 
             ]);
     }
@@ -45,7 +45,7 @@ class ProductResource extends Resource
                 Tables\Columns\ImageColumn::make('image')->width(50),
                 Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('slug'),
-                Tables\Columns\TextColumn::make('price')->sortable(),
+                Tables\Columns\TextColumn::make('price')->sortable()->money("usd"),
             ])
             ->defaultSort("name", "desc")
             ->filters([
