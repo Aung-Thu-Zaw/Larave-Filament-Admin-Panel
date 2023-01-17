@@ -7,6 +7,7 @@ use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
 use Closure;
 use Filament\Forms;
+use Filament\Forms\FormsComponent;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -32,6 +33,8 @@ class ProductResource extends Resource
                 }),
                 Forms\Components\TextInput::make('slug')->required(),
                 Forms\Components\TextInput::make('price')->required()->rule("numeric"),
+                Forms\Components\FileUpload::make("image")->required()->directory('images'),
+
             ]);
     }
 
@@ -39,6 +42,7 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('image')->width(50),
                 Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('slug'),
                 Tables\Columns\TextColumn::make('price')->sortable(),
