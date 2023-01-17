@@ -27,7 +27,7 @@ class VoucherResource extends Resource
         return $form
             ->schema([
                 TextInput::make("code")->required(),
-                TextInput::make("discount_percent")->rule("numeric"),
+                TextInput::make("discount_percent")->rule("numeric")->label("Discount (%)"),
                 Select::make("product_id")->relationship("product", "name"),
             ]);
     }
@@ -37,7 +37,7 @@ class VoucherResource extends Resource
         return $table
             ->columns([
             TextColumn::make("code"),
-            TextColumn::make("discount_percent"),
+            TextColumn::make("discount_percent")->label("Discount (%)"),
             TextColumn::make("product.name"),
             ])
             ->filters([
