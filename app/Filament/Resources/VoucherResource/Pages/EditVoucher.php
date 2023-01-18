@@ -21,4 +21,13 @@ class EditVoucher extends EditRecord
     {
         return $this->getResource()::getUrl('index');
     }
+
+
+    protected function beforeFill()
+    {
+        if ($this->record->payments()->exists()) {
+            $this->notify("danger", "You cannot edit this voucher.");
+            $this->redirect($this->getResource()::getUrl('index'));
+        }
+    }
 }

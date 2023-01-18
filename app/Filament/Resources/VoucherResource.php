@@ -43,6 +43,7 @@ class VoucherResource extends Resource
             TextColumn::make("code"),
             TextColumn::make("discount_percent")->label("Discount (%)"),
             TextColumn::make("product.name"),
+            TextColumn::make("payments_count")->counts("payments")->label("Times Used"),
             ])
             ->filters([
                 //
